@@ -7,7 +7,7 @@ export const routes = Router()
 routes.get('/', UserControllers.getAllUsers);
 routes.post('/register', UserControllers.registerUser);
 routes.post('/login', UserControllers.login);
-routes.put('/login',)
-routes.delete('/login',)
+routes.put('/udpateuser', UserControllers.updateUser);
+routes.delete('/deleteuser', UserControllers.deleteUser);
 
 

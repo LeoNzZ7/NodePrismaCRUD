@@ -18,7 +18,7 @@ export const UserServices = {
             return user.id;
         } else {
             return null;
-        }
+        };
     },
 
     createUser: async (email: string, password: string, firstName: string, lastName?: string, age?: number) => {
@@ -38,17 +38,42 @@ export const UserServices = {
     login: async (email: string, password: string) => {
         const user = await prisma.user.findUnique({
             where: {email}
-        })
+        });
 
         if(user?.email === email) {
             if(user.password === password) {
                 return user.id;
-            } else {
-                return new Error('Senha incorreta');
-            }
-        } else {
-            return new Error('Email inválido');
-        }
+            };
+        };
+    },
 
+    updateUser: async (id: number, email?: string, password?: string, firstName?: string, lastName?: string, age?: number) => {
+        if(id) {
+            await prisma.user.update({
+                where: { id },
+                data: {
+                    email,
+                    password,
+                    firstName,
+                    lastName,
+                    age
+                }
+            });
+
+            const user = await prisma.user.findUnique({
+                where: { id }
+            });
+
+            return user;
+        };
+    },
+
+    deleteUser: async (email: string, password: string) => {
+        return await prisma.user.deleteMany({
+            where: {
+                email,
+                password                  
+            }
+        });
     }
 }
