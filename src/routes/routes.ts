@@ -1,7 +1,9 @@
-import { Request, Response, Router } from "express"
+import { Router } from "express"
+
+import * as UserControllers from '../controllers/user.controller'
 
 export const routes = Router()
 
-routes.get('/', (req: Request, res: Response) => {
-    res.json({server: "TRUE"})
-})
+routes.get('/', UserControllers.getAllUsers);
+
+
