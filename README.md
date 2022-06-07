@@ -1,2 +1,1 @@
-# Em desenvolvimento...
-API CRUD feita com node e prisma 
+# API CRUD desenvolvida com node e prisma 
